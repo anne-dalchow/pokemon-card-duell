@@ -1,13 +1,13 @@
 let playerCards = [];
-let computerCards = []; 
-let currentPlayerCard; 
-let currentComputerCard; 
-let playerScore = 0; 
-let computerScore = 0; 
+let computerCards = [];
+let currentPlayerCard;
+let currentComputerCard;
+let playerScore = 0;
+let computerScore = 0;
 let totalRounds = 6;
-let turnsRemaining = totalRounds; 
+let turnsRemaining = totalRounds;
 
-const comparisonCategories = ["attack", "defense", "speed", "hp"]; 
+const comparisonCategories = ["attack", "defense", "speed", "hp"];
 let currentCategory;
 
 // Event-Listener für den Start-Button
@@ -38,7 +38,9 @@ function loadPokemonData() {
     const id = Math.floor(Math.random() * 1000) + 1;
     promises.push(
       getPokemon(id).then((pokemon) => {
-        if (pokemon) playerCards.push(pokemon);
+        if (pokemon) {
+          playerCards.push(pokemon);
+        }
       })
     );
   }
@@ -47,7 +49,9 @@ function loadPokemonData() {
     const id = Math.floor(Math.random() * 1000) + 1;
     promises.push(
       getPokemon(id).then((pokemon) => {
-        if (pokemon) computerCards.push(pokemon);
+        if (pokemon) {
+          computerCards.push(pokemon);
+        }
       })
     );
   }
@@ -56,14 +60,14 @@ function loadPokemonData() {
     displayComputerCard();
   });
 
-  document.getElementById("start-game").style.display = "none"; 
+  document.getElementById("start-game").style.display = "none";
   document.getElementById("game-area").style.display = "flex";
 }
 
 // Anzeige der Spieler-Karten
 function displayPlayerCards() {
   const playerCardsDiv = document.getElementById("player-cards");
-  playerCardsDiv.innerHTML = ""; 
+  playerCardsDiv.innerHTML = "";
 
   playerCards.forEach((card, index) => {
     playerCardsDiv.innerHTML += `
@@ -103,21 +107,21 @@ function displayComputerCard() {
           </div>
       </div>
   `;
-  computerCards.splice(randomIndex, 1); 
+  computerCards.splice(randomIndex, 1);
   document.getElementById("computer-card").style.display = "flex";
   currentCategory = updateCurrentCategory();
 }
 
 // Karte des Spielers auswählen
 function selectPlayerCard(index) {
-  currentPlayerCard = playerCards[index]; 
+  currentPlayerCard = playerCards[index];
   document
     .querySelectorAll("#player-cards .card")
-    .forEach((card) => card.classList.remove("selected")); 
+    .forEach((card) => card.classList.remove("selected"));
   document
     .querySelectorAll("#player-cards .card")
-    [index].classList.add("selected"); 
-  document.getElementById("compare-cards").disabled = false; 
+    [index].classList.add("selected");
+  document.getElementById("compare-cards").disabled = false;
 }
 
 function displaySelectedPlayerCard() {
@@ -143,23 +147,23 @@ function updateRoundCounter() {
 
 // Aktuelle Kategorie für den Vergleich auswählen
 function updateCurrentCategory() {
-  const randomIndex = Math.floor(Math.random() * comparisonCategories.length); 
-  const currentCategory = comparisonCategories[randomIndex]; 
+  const randomIndex = Math.floor(Math.random() * comparisonCategories.length);
+  const currentCategory = comparisonCategories[randomIndex];
   updateRoundCounter();
   document.getElementById(
     "current-category"
-  ).innerText = `Compare: ${currentCategory}`; 
-  return currentCategory; 
+  ).innerText = `Compare: ${currentCategory}`;
+  return currentCategory;
 }
 
 // Aktualisierung des Punktestands
 function updateScore(winner) {
   if (winner === "Player") {
-    playerScore++; 
+    playerScore++;
   } else if (winner === "Computer") {
-    computerScore++; 
+    computerScore++;
   }
-  turnsRemaining--; 
+  turnsRemaining--;
 
   // Punktestände und verbleibende Züge aktualisieren
   document.getElementById("player-score").innerText = playerScore;
@@ -180,9 +184,9 @@ function updateScore(winner) {
 // Modal für das Endergebnis anzeigen
 function showFinalResult(message) {
   const modal = document.getElementById("modal");
-  document.getElementById("final-result").innerText = message; 
+  document.getElementById("final-result").innerText = message;
   modal.style.display = "flex";
-  document.getElementById("game-area").style.display = "none"; 
+  document.getElementById("game-area").style.display = "none";
   document.getElementById("start-game").style.display = "flex";
   document.getElementById("game-area").style.display = "none";
 }
@@ -218,16 +222,16 @@ document.getElementById("compare-cards").addEventListener("click", () => {
       computerValue = currentComputerCard.stats[1].base_stat;
       break;
     case "defense":
-      playerValue = currentPlayerCard.stats[2].base_stat; 
-      computerValue = currentComputerCard.stats[2].base_stat; 
+      playerValue = currentPlayerCard.stats[2].base_stat;
+      computerValue = currentComputerCard.stats[2].base_stat;
       break;
     case "speed":
       playerValue = currentPlayerCard.stats[0].base_stat;
-      computerValue = currentComputerCard.stats[0].base_stat; 
+      computerValue = currentComputerCard.stats[0].base_stat;
       break;
     case "hp":
-      playerValue = currentPlayerCard.stats[3].base_stat; 
-      computerValue = currentComputerCard.stats[3].base_stat; 
+      playerValue = currentPlayerCard.stats[3].base_stat;
+      computerValue = currentComputerCard.stats[3].base_stat;
       break;
   }
 
