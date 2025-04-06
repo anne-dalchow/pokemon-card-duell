@@ -1,4 +1,5 @@
-🎴 Pokémon Card Duel
+#🎴 Pokémon Card Duel
+
 This is a small card duel game built as part of a coding challenge from Mimo.org.
 The goal was to create a card duel game using data from the Pokémon API, where each card represents a Pokémon, and players face off based on their Pokémon's stats.
 Due to limitations of the Mimo IDE, I wasn’t able to include custom assets like images, so I kept the design minimalist and focused on the core mechanics.
