@@ -5,7 +5,7 @@ The goal was to create a card duel game using data from the Pokémon API, where 
 Due to limitations of the Mimo IDE, I wasn’t able to include custom assets like images, so I kept the design minimalist and focused on the core mechanics.
 In the end, this turned into a fun and rewarding project that earned me first place in the challenge! 🎉
 
----
+
 
 ## 🛠 Features
 - Fetches Pokémon data from the Pokémon API
@@ -18,7 +18,7 @@ CSS3
 JavaScript (ES6+)
 Pokémon API
 
----
+
 
 ## 🌐 External Resources
 The following external resources are included via CDN:
